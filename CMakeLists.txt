@@ -26,8 +26,8 @@ include(pico_sdk_import.cmake)
 project(pi-pico2-temp-rtos C CXX ASM) # defines project name with languages
 
 # Initialize FreeRTOS Kernel
-set(FREERTOS_KERNEL_PATH ${PROJECT_SOURCE_DIR}/lib/FreeRTOS-Kernel)
-include(cmake/FreeRTOS_Kernel_import.cmake)
+set(FREERTOS_KERNEL_PATH ${PROJECT_SOURCE_DIR}/lib/FreeRTOS-Kernel)         # Kernel path that allows .cmake file to handle everything for the kernel
+include(cmake/FreeRTOS_Kernel_import.cmake)                                 # kernel handling provided by FreeRTOS
 
 
 # Initialize the Raspberry Pi Pico SDK
@@ -38,6 +38,8 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
 )
 
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/lib/pico_dht)
+
 pico_set_program_name(${PROJECT_NAME} "${PROJECT_NAME}")
 pico_set_program_version(${PROJECT_NAME} "0.1")
 
@@ -47,12 +49,14 @@ pico_enable_stdio_usb(${PROJECT_NAME} 1)
 
 target_include_directories(${PROJECT_NAME} PRIVATE 
     ${CMAKE_CURRENT_LIST_DIR}/include 
+    ${CMAKE_CURRENT_LIST_DIR}/lib/pico_dht/include
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     pico_async_context_freertos
     FreeRTOS-Kernel-Heap4
     pico_stdlib
+    dht
 )
 
 if(PICO_CYW43_SUPPORTED)
