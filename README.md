@@ -1,9 +1,29 @@
-Personal project to show basic understanding of FreeRTOS to monitor temperature data to send from a computer to a Pi Pico 2 and back over USB/UART
-Sensor used: Combo Temp+Humidity Sensor KY015 (DHT11)
+# Pi Pico 2 (RP2350) FreeRTOS Temperature Sensor CLI
 
-Credit: 
-https://github.com/sbehnke/freertos-pico-template - used as reference to setup the project, utilized updated submodule instead, highly recommend looking at this to understand how to get a general understanding on how to setup freertos on any pi pico, may add a separte section on how it generally works at a basic understanding
+Simple project that aims to use FreeRTOS to showcase implementation of two tasks:
+- Task to monitor temperature and humidity from the KY-015 Sensor and display the data over the VSCode Pi Pico SDK Serial Monitor via USB
+- Another task to use USB to send data from a computer by inputting keywords to the Pi Pico 2 to convert the data displayed between Celsius and Fahrenheit
 
-https://github.com/vmilea/pico_dht - used this library to make the sensor work
+## Features
+- Uses Pi Pico VSCode Extension
+- FreeRTOS
+- Uses both cores for each task
+- Transmitting and Receiving Data through Serial Monitor over USB
+- CMake
 
-Things to do: try and use two cores, add a spi/i2c screen for another task
+## Hardware
+- Pi Pico 2 (RP2350)
+- KY-015 (DHT11 + Humidity Combo Sensor)
+
+### things to add:
+- ST7735 LCD Display to handle temperature + humidity display (make a task with this and use queues)
+
+### Misc:
+If you would like to learn how to utilize multiple cores on your MCU with FreeRTOS, search up things on ```vTaskCoreAffinitySet```
+
+### Credit: 
+https://github.com/sbehnke/freertos-pico-template - used as reference to setup the project, repointed the freertos used for the pi pico, highly recommend looking at this to understand how to get a general understanding on how to setup freertos on any pi pico, may add a separte section on how to generally set it up
+
+https://github.com/FreeRTOS/FreeRTOS-Kernel - the kernel used in this project and the one referenced
+
+https://github.com/vmilea/pico_dht - library to make the sensor KY-015 work
