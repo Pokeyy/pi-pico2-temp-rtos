@@ -36,6 +36,8 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    #src/rtos-1C-blinky.cpp
+    #src/pi-pico-rtos-ex.cpp
 )
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/lib/pico_dht)
